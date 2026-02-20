@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Routes, Route, Link } from 'react-router-dom'
+import PracticePage from './pages/PracticePage.tsx'
 import './App.css'
 
 function App() {
@@ -29,21 +31,31 @@ function App() {
   
 
   return (
-    <>
-      <h1>Unique Habit Tracker</h1>
-      <input
-        type="text"
-        placeholder="Enter a task"
-        value={taskText}
-        onChange={(e) => setTaskText(e.target.value)}
-      />
-      <button onClick={addTask}>Add Task</button>
 
-      <ul>
-        {tasks.map(task => (
-          <li key={task.id}>{task.text}</li>
-        ))}
-      </ul>
+    <>
+    <Link to="/practice">Practice</Link>
+
+    <Routes>
+      <Route path="/" element={
+        <>
+          <h1>Unique Habit Tracker</h1>
+          <input
+            type="text"
+            placeholder="Enter a task"
+            value={taskText}
+            onChange={(e) => setTaskText(e.target.value)}
+          />
+          <button onClick={addTask}>Add Task</button>
+
+          <ul>
+            {tasks.map(task => (
+              <li key={task.id}>{task.text}</li>
+            ))}
+          </ul>
+        </>
+      } />
+      <Route path="/practice" element={<PracticePage />} />
+    </Routes>
     </>
   )
 }
